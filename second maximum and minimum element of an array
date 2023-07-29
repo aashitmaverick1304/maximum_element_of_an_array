@@ -1,0 +1,37 @@
+// brute force approach
+time complexity-O(nlogn)for sorting ,space complexity-O(1)
+vector<int> getSecondOrderElements(int n, vector<int> a) {
+    sort(a.begin(),a.end());
+    vector<int> temp;
+    temp.push_back(a[n-2]);
+    temp.push_back(a[1]);
+    return temp;
+}
+
+
+// optimised approach
+time complexity-O(n) for traversing two arrays,space complexity-O(1)
+vector<int> getSecondOrderElements(int n, vector<int> a) {
+    int maxi=-1,mini=1000;
+    vector<int> temp;
+    for(int i=0;i<n;i++)
+    {
+        maxi=max(maxi,a[i]);
+        mini=min(mini,a[i]);
+    }
+    int second_maxi=-1,second_mini=1000;
+    for(int i=0;i<n;i++)
+    {
+        if(second_maxi<a[i] && a[i]!=maxi)
+        {
+            second_maxi=a[i];
+        }
+        if(second_mini>a[i]&& a[i]!=mini)
+        {
+            second_mini=a[i];
+        }
+    }
+    temp.push_back(second_maxi);
+    temp.push_back(second_mini);
+    return temp;
+}
